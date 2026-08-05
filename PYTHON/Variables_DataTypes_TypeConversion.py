@@ -47,6 +47,7 @@ print(type(z))
 x="15.5"
 y=int(float(x)) # converts string to float, then to integer
 print(type(y))
+#cannot convert to int directly from decimal looking string, need to convert to float first
 
 
 #Multiple Variable Assignment
