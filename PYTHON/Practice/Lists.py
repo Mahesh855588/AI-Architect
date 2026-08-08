@@ -121,6 +121,48 @@ b=copy.deepcopy(a)
 b[3].append(7) # now b is entirely independent 
 print(a) # now a will not change
 
+#unpacking
+a,*b=[1,2,3,4,5,6] # a=[1] ,b=[2,3,4,5,6]
+print(a,b)
+a,*b,c=[1,2,3,4,5,6] #a=[1] b=[2,3,4,5] c=[6]
+print(a,b,c)
 
 
+#List as stack
+#LIFO
+stack=[]
+stack.append(34)
+stack.append(90)
+stack.pop()
 
+#Queue
+from collections import deque
+queue=deque()
+queue.append(1)
+queue.append(2)
+queue.appendleft(0)
+quue.pop()
+queue.popleft()
+
+# + 
+a=[1,2,3]
+b=a+[4,5]
+print(a) # this operation will not change a
+
+# append
+a=[1,2,3]
+a.append([4,5,6]) #[4,5,6] together becomes element in a
+print(a)
+
+#extend
+a=[1,2,3]
+a.extend([4,5,6]) #it will extend the a as [1,2,3,4,5,6] instead adding like an element
+print(a)
+
+
+#list multiplication with nested loop(trap)
+a=[[0]*3]*3 #[[0,0,0],[0,0,0],[0,0,0]]
+a[0][0]=1 #if we change in 1 row it will change in another 2 rows which points to same object in memory
+print(a)
+#correct way
+a=[[0]*3 for i in range(3)]
