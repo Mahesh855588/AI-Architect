@@ -25,6 +25,10 @@ print(x and y)  # False — both must be True
 print(x or y)   # True  — at least one True
 print(not x)    # False — flips the value
 
+print(3 and 5)      # 5    -- both truthy, returns the LAST evaluated operand
+print(0 and 5)       # 0    -- short-circuits at first falsy value, returns it
+print(3 or 5)        # 3    -- short-circuits at first truthy value, returns it
+print(0 or 5)         # 5    -- 0 is falsy, so evaluation continues to 5
 
 #Assignment Operators
 x = 5

@@ -18,6 +18,7 @@ print(s[::-1])   # 'dlroW ,olleH' — reverse the string
 print(s[::2])    # 'Hlo ol' — step of 2
 
 #Strings are immutable
+#for immutable inplace assignment is not possible
 s = "hello"
 s[0] = "H"   # TypeError — can't modify a string in place
 s = "Hello"  # this creates a NEW string, doesn't modify the old one
@@ -44,7 +45,21 @@ print(f"Name: {name}")
 print(f"Score: {score:.2f}")     # 2 decimal places → 92.57
 print(f"{name.upper()}")          # can call methods inside {}
 print(f"{score:>10}")             # right-align in 10-char width
-print(f"{score:,.2f}")            # comma separators for large numbers
+print(f"{score:,.2f}")            # comma separators for large numbers with 2 deciamals
+pct = 0.4567
+print(f"{pct:.1%}")                          # 45.7%  -- percent formatting built in
+'''Breaking down {pct:.1%}
+
+The format spec after the : is .1%. Two parts:
+
+% — percentage type: This tells Python to do two things automatically:
+Multiply the value by 100
+Append a % symbol
+.1 — precision: Number of digits after the decimal point (in the percentage form, not the original number).'''
+
+# Debug shortcut (3.8+) — prints both the expression and its value
+x = 42
+print(f"{x=}")                               # x=42
 
 #String concatenation
 a = "Hello"
@@ -63,6 +78,7 @@ print("   ".isspace())     # True
 print("Line1\nLine2")   # \n = newline
 print("Tab\there")       # \t = tab
 print("She said \"hi\"") # \" = literal quote
+print("C:\new\folder") # considers /n as new line
 print(r"C:\new\folder")  # raw string — ignores escape sequences, prints backslashes literally
 
 #String comparison (lexicographic, character by character)
@@ -102,6 +118,18 @@ result = "".join(str(i) for i in range(1000))
 s = "hello"
 encoded = s.encode("utf-8")     # b'hello' — bytes object
 decoded = encoded.decode("utf-8")  # back to "hello"
+text = "café"
+encoded = text.encode("utf-8")     # str -> bytes
+print(encoded)                      # b'caf\xc3\xa9'
+print(type(encoded))                # <class 'bytes'>
+
+decoded = encoded.decode("utf-8")  # bytes -> str
+print(decoded)                      # café
+
+b = b"hello"          # byte string literal
+print(type(b))         # <class 'bytes'>
+print(b + text.encode())  # concatenation works only bytes-to-bytes
+
 
 #str.title() vs str.capitalize()
 s = "the quick brown fox"
