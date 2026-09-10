@@ -8,23 +8,7 @@ complex_num=3+5j #complex
 x=2**100
 print(x) # prints 1267650600228229401496703205376 since there is no overflow in python 
 
-#IEEE-754 pitfalls(rounding issues)
-print(0.1+0.2) # 0.30000000000000004  -- NOT 0.3
-print(0.1 + 0.2 == 0.3)   # False
-# This isn't a Python bug — it's binary floating point. 0.1 has no exact binary representation.
-#practical fix --never use == for float
-import math
-print(math.isclose(0.1+0.2,0.3))
-#another classical pitfall
-#solution for above problem
-from decimal import Decimal
-print(Decimal("0.1")+Decimal("0.2")) #prints 0.3 we have to give in string format else will change output
-print(Decimal(0.1)) #prints 0.1000000000000000055511151231257827021181583404541015625
-print(Decimal("0.1"))
-amount=0.0
-for i in range(10):
-    amount+=0.1
-print(amount)  #  0.9999999999999999, not 1.0
+
 
 z=3+4j #complex
 print(z.real,z.imag)
@@ -71,8 +55,13 @@ print(type(result))
 x=10 #integer
 x="hello" # now its string 
 
-#Type Conversion(casting)
+#Labelling
+a=[1,2,3] # a is a variable which holds the value stored in memory ,here a is label of that data
+b=a  # b does not create separate memory ,it will just points to 'a' data
+# now a and b are labels of data [1,2,3]
 
+
+#Type Conversion(casting)
 ## String to number
 x="15"
 y=int(x) # converts string to integer
@@ -116,13 +105,13 @@ list2.append(4)
 print(list1) # prints [1,2,3,4], list1 is changed ,Same object in memory
 
 
-#memory reference
+#memory reference Id
 x=5
 y=5
 print(id(x)) # prints memory address of x
 print(id(y)) # prints memory address of y, same as x
 
-# is vs ==
+# is vs == (identity vs equality)
 # (==) refers to wheather both variables have same values
 # (is) refers to wheather both variables points to same object in memory 
 # immutable data types with same values share same object in memory
@@ -144,3 +133,23 @@ print(f"My name is {name} and I am {age} years old.") # prints "My name is Mahes
 #Constants (convention, not enforced)
 #Python has no true constants — by convention, use ALL_CAPS to signal "don't change this":
 CONSTANT_VALUE = 3.14
+
+
+#IEEE-754 pitfalls(rounding issues)
+print(0.1+0.2) # 0.30000000000000004  -- NOT 0.3
+print(0.1 + 0.2 == 0.3)   # False
+#float stores in base 2 ,decimals stores in base 10
+# This isn't a Python bug — it's binary floating point. 0.1 has no exact binary representation.
+#practical fix --never use == for float
+import math
+print(math.isclose(0.1+0.2,0.3))
+#another classical pitfall
+#solution for above problem
+from decimal import Decimal
+print(Decimal("0.1")+Decimal("0.2")) #prints 0.3 we have to give in string format else will change output
+print(Decimal(0.1)) #prints 0.1000000000000000055511151231257827021181583404541015625
+print(Decimal("0.1"))
+amount=0.0
+for i in range(10):
+    amount+=0.1
+print(amount)  #  0.9999999999999999, not 1.0
